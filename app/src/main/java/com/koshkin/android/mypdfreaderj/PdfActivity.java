@@ -144,17 +144,17 @@ public class PdfActivity extends AppCompatActivity implements View.OnClickListen
         // открываем нужную страницу
         curPage = pdfRenderer.openPage(index);
         // определяем размеры Bitmap
-        int newWidth = (int) (getResources().getDisplayMetrics().widthPixels * curPage.getWidth() / 72
-                * currentZoomLevel / 40);
+        int newWidth = (int) ((getResources().getDisplayMetrics().widthPixels * curPage.getWidth()/72 )
+                * (currentZoomLevel /40));
         int newHeight =
                 (int) (getResources().getDisplayMetrics().heightPixels * curPage.getHeight() / 72
                         * currentZoomLevel / 64);
         Bitmap bitmap = Bitmap.createBitmap(newWidth, newHeight, Bitmap.Config.ARGB_8888);
-        Matrix matrix = new Matrix();
-        float dpiAdjustedZoomLevel = currentZoomLevel * DisplayMetrics.DENSITY_MEDIUM
-                / getResources().getDisplayMetrics().densityDpi;
-        matrix.setScale(dpiAdjustedZoomLevel, dpiAdjustedZoomLevel);
-        curPage.render(bitmap, null, matrix, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+        //     Matrix matrix = new Matrix();
+       // float dpiAdjustedZoomLevel = currentZoomLevel * DisplayMetrics.DENSITY_MEDIUM
+         //       / getResources().getDisplayMetrics().densityDpi;
+       // matrix.setScale(dpiAdjustedZoomLevel, dpiAdjustedZoomLevel);
+        curPage.render(bitmap, null,/* matrix */ null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         // отображаем результат рендера
         imageView.setImageBitmap(bitmap);
         // проверяем, нужно ли делать кнопки недоступными

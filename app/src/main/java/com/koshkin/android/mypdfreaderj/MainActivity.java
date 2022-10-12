@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             PdfFile pdfFile =getItem(position);
-            TextView name = findViewById(R.id.text_file_name);
+            TextView name = view.findViewById(R.id.text_file_name);
             name.setText(pdfFile.getFileName());
             return view;
         }
@@ -166,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this,PdfActivity.class);
                 intent.putExtra("keyName",arrayList.get(position).getFileName());
+                intent.putExtra("fileName", arrayList.get(position).getFilePath());
+                startActivity(intent);
             }
         });
     }
